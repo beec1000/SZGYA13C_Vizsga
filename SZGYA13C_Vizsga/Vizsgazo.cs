@@ -18,7 +18,7 @@ namespace SZGYA13C_Vizsga
         public float HalozatDModul { get; set; }
         public float ITSzobeli { get; set; }
         public float AngolSzobeli { get; set; }
-        private IEnumerable<float> ModulEredmenyek => new[]
+        public IEnumerable<float> ModulEredmenyek => new[]
         {
         ITesHalozati, Programozas, HalozatAModul, HalozatBModul, 
         HalozatCModul, HalozatDModul, ITSzobeli, AngolSzobeli

@@ -34,7 +34,10 @@ namespace SZGYA13C_Vizsga
 
             vizsgazokLB.Content = $"{vizsgazok.Count} vizsgázó adatait beolvastuk";
 
-            
+            legjobbEredmeny.Content = string.Empty;
+            leggyengebbEredmeny.Content = string.Empty;
+            vizsgaEredmenye.Content = string.Empty;
+
         }
 
         private void sikeresBTN_Click(object sender, RoutedEventArgs e)
@@ -46,11 +49,13 @@ namespace SZGYA13C_Vizsga
 
         private void allomanybaIrasBTN_Click(object sender, RoutedEventArgs e)
         {
-            var sikeres = vizsgazok.Select(s => $"{s.Nev}\t{Math.Round(s.Vegeredmeny, 2)}\t{s.Erdemjegy()}").ToList();
 
-            File.WriteAllLines(@"..\..\..\src\vizsgaredmenyek.txt", sikeres);
+            var sikeres = vizsgazok.Where(e => e.Erdemjegy() != "Elégtelen");
+            var sikeresAdatok = sikeres.Select(s => $"{s.Nev}\t{Math.Round(s.Vegeredmeny, 2)}\t{s.Erdemjegy()}").ToList();
 
-            if (sikeres != null)
+            File.WriteAllLines(@"..\..\..\src\vizsgaredmenyek.txt", sikeresAdatok);
+
+            if (sikeresAdatok != null)
             {
                 MessageBox.Show("Sikeres!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -58,6 +63,37 @@ namespace SZGYA13C_Vizsga
             {
                 MessageBox.Show("Hiba!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void keresettTanulo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tanuloNeve = keresettTanulo.Text;
+            var tanuloAdatai = vizsgazok.Where(t => t.Nev.Contains(tanuloNeve)).FirstOrDefault();
+
+            if(tanuloAdatai != null)
+            {
+                legjobbEredmeny.Content = $"Legjobb eredménye: {tanuloAdatai.ModulEredmenyek.Max() * 100}%";
+                leggyengebbEredmeny.Content = $"Leggyengébb eredménye: {tanuloAdatai.ModulEredmenyek.Min() * 100}%";
+                if(tanuloAdatai.Erdemjegy() == "Elégtelen")
+                {
+                    vizsgaEredmenye.Content = $"Sikertelen vizsgát tett";
+                }
+                else
+                {
+                    vizsgaEredmenye.Content = $"Sikeres vizsgát tett";
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Ez a tanuló nincs az állományban!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                keresettTanulo.Text = string.Empty;
+                legjobbEredmeny.Content = string.Empty;
+                leggyengebbEredmeny.Content = string.Empty;
+                vizsgaEredmenye.Content = string.Empty;
+            }
+
+
         }
     }
 }

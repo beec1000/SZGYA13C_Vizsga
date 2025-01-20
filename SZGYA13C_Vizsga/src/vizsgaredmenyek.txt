@@ -4,7 +4,6 @@ Bán Béla	0,74	Jó
 Birkás Lajos	0,74	Jó
 Csángó Pál	0,71	Közepes
 Csontos Károly	0,85	Jeles
-Dénes László	0,69	Elégtelen
 Dobó Ernő	0,72	Jó
 Érsek Márta	0,78	Jó
 Farádi Anikó	0,77	Jó
@@ -17,7 +16,6 @@ Kocsis Judit	0,75	Jó
 Kósa Gyula	0,71	Közepes
 Kovács Rita	0,76	Jó
 Kozma Kálmán	0,76	Jó
-Lakatos Réka	0,75	Elégtelen
 Lázár Tamás	0,76	Jó
 Lengyel Mihály	0,74	Jó
 Madarász Emil	0,74	Jó

@@ -22,11 +22,16 @@
                 <RowDefinition Height="1.5*" />
             </Grid.RowDefinitions>
 
-            <Button x:Name="sikeresBTN" Content="Sikeres vizsgát tett" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="159,0,0,0" Click="sikeresBTN_Click" />
-            <Label x:Name="sikeresLB" Content="TEMP" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="267,0,0,0" />
+            <Button x:Name="sikeresBTN" Content="Sikeres vizsgát tett" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="186,0,0,0" Click="sikeresBTN_Click" />
+            <Label x:Name="sikeresLB" Content="TEMP" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="289,0,0,0" />
 
             <Button x:Name="allomanybaIrasBTN" Content="Eredmények állományba írása" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="allomanybaIrasBTN_Click" />
 
+            <Label Content="Keresett tanuló" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="186,86,0,0"/>
+            <TextBox x:Name="keresettTanulo" Text="" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150" Margin="0,112,0,0" TextChanged="keresettTanulo_TextChanged"/>
+            <Label x:Name="legjobbEredmeny" Content="legjobb" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="192,135,0,0"/>
+            <Label x:Name="leggyengebbEredmeny" Content="legrosszabb" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="193,161,0,0"/>
+            <Label x:Name="vizsgaEredmenye" Content="vizsgaja" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="193,187,0,0"/>
 
         </Grid>
     </Grid>
