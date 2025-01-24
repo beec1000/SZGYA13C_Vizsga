@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
 
         <Label x:Name="vizsgazokLB" Content="TEMP" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" />
-        <ListBox x:Name="vizsgazokList" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="350" />
+        <ListBox x:Name="vizsgazokList" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="350" SelectionChanged="vizsgazokList_SelectionChanged" />
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -28,7 +28,7 @@
             <Button x:Name="allomanybaIrasBTN" Content="Eredmények állományba írása" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="allomanybaIrasBTN_Click" />
 
             <Label Content="Keresett tanuló" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="186,86,0,0"/>
-            <TextBox x:Name="keresettTanulo" Text="" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150" Margin="0,112,0,0" TextChanged="keresettTanulo_TextChanged"/>
+            <TextBox x:Name="keresettTanulo" Text="" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150" Margin="0,112,0,0" KeyDown="keresettTanulo_KeyChanged"/>
             <Label x:Name="legjobbEredmeny" Content="legjobb" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="192,135,0,0"/>
             <Label x:Name="leggyengebbEredmeny" Content="legrosszabb" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="193,161,0,0"/>
             <Label x:Name="vizsgaEredmenye" Content="vizsgaja" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="193,187,0,0"/>

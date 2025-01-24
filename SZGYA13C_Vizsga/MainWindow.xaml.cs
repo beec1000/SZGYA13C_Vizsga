@@ -65,35 +65,45 @@ namespace SZGYA13C_Vizsga
             }
         }
 
-        private void keresettTanulo_TextChanged(object sender, TextChangedEventArgs e)
+        private void vizsgazokList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tanuloNeve = keresettTanulo.Text;
-            var tanuloAdatai = vizsgazok.Where(t => t.Nev.Contains(tanuloNeve)).FirstOrDefault();
+            var listabolValasztott = vizsgazokList.SelectedItem.ToString().ToLower();
+            var tanuloNeve = listabolValasztott;
+            keresettTanulo.Text = tanuloNeve;
+            keresettTanulo.Focus();
+        }
 
-            if(tanuloAdatai != null)
+        private void keresettTanulo_KeyChanged(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            var tanuloNeve = keresettTanulo.Text.ToLower();
+            var tanuloAdatai = vizsgazok.Where(t => t.Nev.ToLower().Contains(tanuloNeve)).FirstOrDefault();
+
+            if (e.Key == Key.Enter)
             {
-                legjobbEredmeny.Content = $"Legjobb eredménye: {tanuloAdatai.ModulEredmenyek.Max() * 100}%";
-                leggyengebbEredmeny.Content = $"Leggyengébb eredménye: {tanuloAdatai.ModulEredmenyek.Min() * 100}%";
-                if(tanuloAdatai.Erdemjegy() == "Elégtelen")
+                if (tanuloAdatai != null)
                 {
-                    vizsgaEredmenye.Content = $"Sikertelen vizsgát tett";
+                    legjobbEredmeny.Content = $"Legjobb eredménye: {tanuloAdatai.ModulEredmenyek.Max() * 100}%";
+                    leggyengebbEredmeny.Content = $"Leggyengébb eredménye: {tanuloAdatai.ModulEredmenyek.Min() * 100}%";
+                    if (tanuloAdatai.Erdemjegy() == "Elégtelen")
+                    {
+                        vizsgaEredmenye.Content = $"Sikertelen vizsgát tett";
+                    }
+                    else
+                    {
+                        vizsgaEredmenye.Content = $"Sikeres vizsgát tett";
+                    }
+
                 }
                 else
                 {
-                    vizsgaEredmenye.Content = $"Sikeres vizsgát tett";
+                    MessageBox.Show("Ez a tanuló nincs az állományban!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    keresettTanulo.Text = string.Empty;
+                    keresettTanulo.Focus();
+                    legjobbEredmeny.Content = string.Empty;
+                    leggyengebbEredmeny.Content = string.Empty;
+                    vizsgaEredmenye.Content = string.Empty;
                 }
-                
             }
-            else
-            {
-                MessageBox.Show("Ez a tanuló nincs az állományban!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
-                keresettTanulo.Text = string.Empty;
-                legjobbEredmeny.Content = string.Empty;
-                leggyengebbEredmeny.Content = string.Empty;
-                vizsgaEredmenye.Content = string.Empty;
-            }
-
-
         }
     }
 }
